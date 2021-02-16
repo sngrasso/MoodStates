@@ -47,6 +47,7 @@ function preload() {
   images[2] = loadImage('assets/third.png');
   images[3] = loadImage('assets/fourth.png');
   images[4] = loadImage('assets/fifth.png');
+  images[5] = loadImage('assets/splash.png');
 }
 
 // Center drawing, drawFunction will be one for default
@@ -59,7 +60,7 @@ function setup() {
   textSize(24);
 
   // set to one for startup
-  drawFunction = drawOne;
+  drawFunction = drawSplash;
 }
 
 // Very simple, sets the background color and calls your state machine function
@@ -96,7 +97,7 @@ drawThree = function() {
    text("Sleepy/Dreamy", width/2, height - gTextOffset);
 }
 
-//-- drawOne() will draw the image at index 3 from the array
+//-- drawFour() will draw the image at index 3 from the array
 drawFour = function() {
    image(images[3],width/2, height/2);
 
@@ -104,7 +105,7 @@ drawFour = function() {
    text("Cozy", width/2, height - gTextOffset);
 }
 
-//-- drawOne() will draw the image at index 4 from the array
+//-- drawFive() will draw the image at index 4 from the array
 drawFive = function() {
    image(images[4],width/2, height/2);
 
@@ -112,11 +113,19 @@ drawFive = function() {
    text("\"This is Fine\"", width/2, height - gTextOffset);
 }
 
+//-- drawSplash() will draw the image at index 5 from the array
+drawSplash = function() {
+   image(images[5],width/2, height/2);
+}
 
 //========= TEMPLATE: add or change interface functions, as you like =========
 
 // Change the drawFunction variable based on your interaction
 function keyTyped() {
+  // if (drawFunction == drawSplash) {
+  //   return;
+  // }
+
   if( key === '1' ) {
   	drawFunction = drawOne;
   }
@@ -131,5 +140,8 @@ function keyTyped() {
   }
   else if( key === '5' ) {
   	drawFunction = drawFive;
+  }
+  else if( key === 's' ) {
+    drawFunction = drawSplash;
   }
 }
