@@ -33,6 +33,7 @@
 
 // Array of images
 var images = [];
+var instructions;
 
 // variable that is a function 
 var drawFunction;
@@ -48,6 +49,8 @@ function preload() {
   images[3] = loadImage('assets/fourth.png');
   images[4] = loadImage('assets/fifth.png');
   images[5] = loadImage('assets/splash.png');
+
+  instructions = loadStrings("instructions.txt");
 }
 
 // Center drawing, drawFunction will be one for default
@@ -86,7 +89,7 @@ drawTwo = function() {
    image(images[1],width/2, height/2);
 
    fill(240,120,0);
-   text("\"Butter scrapped over too much bread\"", width/2, height - gTextOffset);
+   text("\"Butter scrapped over too much bread.\"", width/2, height - gTextOffset);
 }
 
 //-- drawOne() will draw the image at index 2 from the array
@@ -116,6 +119,10 @@ drawFive = function() {
 //-- drawSplash() will draw the image at index 5 from the array
 drawSplash = function() {
    image(images[5],width/2, height/2);
+
+   for (var i = 0; i < instructions.length; i++) {
+     text(i + ' - ' + instructions[i], (i * width/4) + 10, height - gTextOffset );
+   }
 }
 
 //========= TEMPLATE: add or change interface functions, as you like =========
