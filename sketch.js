@@ -39,9 +39,9 @@ var instructions;
 var drawFunction;
 
 // offset from bottom of screen
-var gTextOffset = 20;
+var gTextOffset = 25;
 var gHover = 0;
-var move = 0;
+var hoverSpeed = .25;
 var assets = ["first", "second", "third", "fourth", "fifth", "splash"]
 
 // load all images into an array
@@ -122,7 +122,7 @@ drawFive = function() {
 //-- drawSplash() will draw the image at index 5 from the array
 drawSplash = function() {
    image(images[5],width/2, height/2);
-   hoverText();
+   hoverText("Press any Key to Start", height);
 }
 
 //-- drawSplash() will draw the image at index 5 from the array
@@ -131,12 +131,12 @@ drawInstructions = function() {
    for (var i = 0; i < instructions.length; i++) {
      if (i == 0) {
         textSize(34);
-        text("Instructions", width/2, height/4);
+        hoverText("Instructions", height/4);
         textSize(24);
      } 
      else {
         textAlign(LEFT);
-        text(i + '. ' + instructions[i], width/3, height/4 + (30  * i));
+        text(i + '. ' + instructions[i], width/4, height/4 + (50  * i));
      }
    }
    textAlign(CENTER);
@@ -177,25 +177,14 @@ function keyTyped() {
 
 }
 
-function hoverText() {
+function hoverText(title, pos) {
 
-  if (gHover == 10) {
-    move = 1;
-  }
-  else if (gHover == -10) {
-    move = 0;
-  }
+  text(title, width/2, pos - gTextOffset + gHover);
 
-  if (gHover >= -10 && move == 0){
-    print("hi")
-    gHover += 1;
-  } 
-  else if (gHover >= 10 && move == 1) {
-    print("hello");
-    gHover -= 1;
+  gHover = gHover + hoverSpeed;
+
+  if (gHover > 10 || gHover < -10) {
+    hoverSpeed = hoverSpeed * -1;
   }
 
-  
-  text("Press any Key to Start", width/2, height - gTextOffset + gHover);
-  
 }
