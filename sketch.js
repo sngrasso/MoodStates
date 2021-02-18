@@ -40,14 +40,14 @@ var drawFunction;
 
 // offset from bottom of screen
 var gTextOffset = 20;
-var assets = ["first", "second", "third", "fourth", "fifth", "splash"]
+//var assets = ["first", "second", "third", "fourth", "fifth", "splash"]
 
 // load all images into an array
 function preload() {
 
-  for (var i = 0; i < assets.length; i++) {
-    images[i] = loadImage('assets/' + assets[i] + '.png');
-  }
+  // for (var i = 0; i < assets.length; i++) {
+  //   images[i] = loadImage('assets/' + assets[i] + '.png');
+  // }
 
   images[0] = loadImage('assets/first.png');
   images[1] = loadImage('assets/second.png');
@@ -57,7 +57,9 @@ function preload() {
   images[5] = loadImage('assets/splash.png');
 
 
+
   //load in text from file
+
   instructions = loadStrings("instructions.txt");
 }
 
@@ -97,7 +99,7 @@ drawTwo = function() {
    image(images[1],width/2, height/2);
 
    fill(240,120,0);
-   text("\"Butter scrapped over too much bread\"", width/2, height - gTextOffset);
+   text("\"Butter scrapped over too much bread.\"", width/2, height - gTextOffset);
 }
 
 //-- drawOne() will draw the image at index 2 from the array
