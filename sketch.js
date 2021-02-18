@@ -33,21 +33,24 @@
 
 // Array of images
 var images = [];
+var instructions;
 
 // variable that is a function 
 var drawFunction;
 
 // offset from bottom of screen
 var gTextOffset = 20;
+var assets = ["first", "second", "third", "fourth", "fifth", "splash"]
 
 // load all images into an array
 function preload() {
-  images[0] = loadImage('assets/first.png');
-  images[1] = loadImage('assets/second.png');
-  images[2] = loadImage('assets/third.png');
-  images[3] = loadImage('assets/fourth.png');
-  images[4] = loadImage('assets/fifth.png');
-  images[5] = loadImage('assets/splash.png');
+
+  for (var i = 0; i < assets.length; i++) {
+    images[i] = loadImage('assets/' + assets[i] + '.png');
+  }
+
+  //load in text from file
+  instructions = loadStrings("instructions.txt");
 }
 
 // Center drawing, drawFunction will be one for default
@@ -116,6 +119,10 @@ drawFive = function() {
 //-- drawSplash() will draw the image at index 5 from the array
 drawSplash = function() {
    image(images[5],width/2, height/2);
+
+   for (var i = 0; i < instructions.length; i++) {
+     text(i + ' - ' + instructions[i], (i * width/4) + 10, height - gTextOffset );
+   }
 }
 
 //========= TEMPLATE: add or change interface functions, as you like =========
