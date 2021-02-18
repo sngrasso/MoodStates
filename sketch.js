@@ -40,23 +40,14 @@ var drawFunction;
 
 // offset from bottom of screen
 var gTextOffset = 20;
-//var assets = ["first", "second", "third", "fourth", "fifth", "splash"]
+var assets = ["first", "second", "third", "fourth", "fifth", "splash"]
 
 // load all images into an array
 function preload() {
 
-  // for (var i = 0; i < assets.length; i++) {
-  //   images[i] = loadImage('assets/' + assets[i] + '.png');
-  // }
-
-  images[0] = loadImage('assets/first.png');
-  images[1] = loadImage('assets/second.png');
-  images[2] = loadImage('assets/third.png');
-  images[3] = loadImage('assets/fourth.png');
-  images[4] = loadImage('assets/fifth.png');
-  images[5] = loadImage('assets/splash.png');
-
-
+  for (var i = 0; i < assets.length; i++) {
+    images[i] = loadImage('assets/' + assets[i] + '.png');
+  }
 
   //load in text from file
 
