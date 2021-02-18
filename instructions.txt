@@ -1,1 +1,5 @@
-Press the number (1 - 5) on your keyboard for a surprise!!
+Instructions
+Navigate through all the moods!!!
+Press SPACE BAR to start.
+Press the numbers 1 - 5 on your keyboard to look at different moods.
+Press 's' to go back to the splash page.

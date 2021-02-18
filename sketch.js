@@ -40,17 +40,19 @@ var drawFunction;
 
 // offset from bottom of screen
 var gTextOffset = 20;
+var gHover = 0;
+var move = 0;
 var assets = ["first", "second", "third", "fourth", "fifth", "splash"]
 
 // load all images into an array
 function preload() {
 
+  // changed loading images into a for loop
   for (var i = 0; i < assets.length; i++) {
     images[i] = loadImage('assets/' + assets[i] + '.png');
   }
 
   //load in text from file
-
   instructions = loadStrings("instructions.txt");
 }
 
@@ -120,21 +122,41 @@ drawFive = function() {
 //-- drawSplash() will draw the image at index 5 from the array
 drawSplash = function() {
    image(images[5],width/2, height/2);
+   hoverText();
+}
 
+//-- drawSplash() will draw the image at index 5 from the array
+drawInstructions = function() {
+   // for loop for all instructions
    for (var i = 0; i < instructions.length; i++) {
-     text(i + ' - ' + instructions[i], (i * width/4) + 10, height - gTextOffset );
+     if (i == 0) {
+        textSize(34);
+        text("Instructions", width/2, height/4);
+        textSize(24);
+     } 
+     else {
+        textAlign(LEFT);
+        text(i + '. ' + instructions[i], width/3, height/4 + (30  * i));
+     }
    }
+   textAlign(CENTER);
 }
 
 //========= TEMPLATE: add or change interface functions, as you like =========
 
 // Change the drawFunction variable based on your interaction
 function keyTyped() {
-  // if (drawFunction == drawSplash) {
-  //   return;
-  // }
 
-  if( key === '1' ) {
+  if (drawFunction == drawSplash && keyIsPressed) {
+    drawFunction = drawInstructions;
+  }
+  else if ( drawFunction == drawInstructions) {
+    if (key == ' ') {
+      drawFunction = drawOne;
+    }
+    return;
+  }
+  else if( key === '1' ) {
   	drawFunction = drawOne;
   }
   else if( key === '2' ) {
@@ -152,4 +174,28 @@ function keyTyped() {
   else if( key === 's' ) {
     drawFunction = drawSplash;
   }
+
+}
+
+function hoverText() {
+
+  if (gHover == 10) {
+    move = 1;
+  }
+  else if (gHover == -10) {
+    move = 0;
+  }
+
+  if (gHover >= -10 && move == 0){
+    print("hi")
+    gHover += 1;
+  } 
+  else if (gHover >= 10 && move == 1) {
+    print("hello");
+    gHover -= 1;
+  }
+
+  
+  text("Press any Key to Start", width/2, height - gTextOffset + gHover);
+  
 }
